@@ -15,18 +15,23 @@ func main() {
 	// No longer needs to use the "export PORT=value".
 	err := godotenv.Load(".env")
 
+	// Check if their is an error.
 	if err != nil {
 		fmt.Println(err)
 	}
 
+	// Get the port environment variable.
 	PORT := os.Getenv("PORT")
 
+	// Check again to make sure if it exist or not.
 	if PORT == "" {
 		log.Fatal("PORT is not found in environment.")
 	}
 
+	// Initialize the router.
 	router := chi.NewRouter()
 
+	// Setup the server.
 	server := &http.Server{
 		Handler: router,
 		Addr:    ":" + PORT,
