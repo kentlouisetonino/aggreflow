@@ -9,15 +9,15 @@ import (
 )
 
 func main() {
-	portString := os.Getenv("PORT")
+	PORT := os.Getenv("PORT")
 
 	// Load the env file.
 	// No longer needs to use the "export PORT=value".
 	godotenv.Load(".env")
 
-	if portString == "" {
+	if PORT == "" {
 		log.Fatal("PORT is not found in environment.")
 	}
 
-	fmt.Println(portString)
+	fmt.Println(PORT)
 }
