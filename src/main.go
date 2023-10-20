@@ -6,11 +6,15 @@ import "os"
 import "github.com/joho/godotenv"
 
 func main() {
-	PORT := os.Getenv("PORT")
-
 	// Load the env file.
 	// No longer needs to use the "export PORT=value".
-	godotenv.Load(".env")
+  err := godotenv.Load(".env")
+
+  if err != nil {
+    fmt.Println(err)
+  }
+
+  PORT := os.Getenv("PORT")
 
 	if PORT == "" {
 		log.Fatal("PORT is not found in environment.")
