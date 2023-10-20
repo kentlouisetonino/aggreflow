@@ -18,3 +18,8 @@ chmod +x app
 ./app
 ```
 
+> - Package installation.
+```bash
+go get <github/*>
+```
+
