@@ -1,2 +1,3 @@
-# aggreflow
-An RSS aggregator application
+## Description
+> - An RSS aggregator application.
+
