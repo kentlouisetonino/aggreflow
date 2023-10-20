@@ -7,8 +7,14 @@
 
 
 ### Development
-> - Build the app.
+> - Bash scripts.
 ```bash
-go build -o app ./src/main.go 
+# Build the app.
+chmod +x build
+./build
+
+# Run the app.
+chmod +x app
+./app
 ```
 
