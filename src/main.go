@@ -1,12 +1,9 @@
 package main
 
-import (
-	"fmt"
-	"log"
-	"os"
-
-	"github.com/joho/godotenv"
-)
+import "fmt"
+import "log"
+import "os"
+import "github.com/joho/godotenv"
 
 func main() {
 	PORT := os.Getenv("PORT")
@@ -21,3 +18,4 @@ func main() {
 
 	fmt.Println(PORT)
 }
+
