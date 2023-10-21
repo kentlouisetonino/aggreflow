@@ -6,6 +6,8 @@ import (
 	"net/http"
 	"os"
 
+	"github.com/kentlouisetonino/aggreflow/src/helper"
+
 	"github.com/go-chi/chi"
 	"github.com/go-chi/cors"
 	"github.com/joho/godotenv"
@@ -42,9 +44,13 @@ func main() {
 		MaxAge:           300,
 	}))
 
-	routerV2 := chi.NewRouter()
+  // For handling the passed json value.
+	routerV1 := chi.NewRouter()
+	routerV1.HandleFunc("/health", helper.HandleHealth)
 
-	routerV2.HandleFunc("/ready", handler)
+  // Nest the routerV2.
+  // The full path for this is /api/health
+  router.Mount("/v1", routerV1)
 
 	// Setup the server.
 	server := &http.Server{
