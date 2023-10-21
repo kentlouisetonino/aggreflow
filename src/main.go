@@ -36,12 +36,12 @@ func main() {
 
   // Setup the cors to allow any request from the browser.
   router.Use(cors.Handler(cors.Options{
-    AllowedOrigins:   []string{"https://*", "http://*"},
-    AllowedMethods:   []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
-    AllowedHeaders:   []string{"*"},
-    ExposedHeaders:   []string{"Link"},
+    AllowedOrigins: []string{"https://*", "http://*"},
+    AllowedMethods: []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
+    AllowedHeaders: []string{"*"},
+    ExposedHeaders: []string{"Link"},
     AllowCredentials: false,
-    MaxAge:           300,
+    MaxAge: 300,
   }))
 
   // For handling the passed json value.
@@ -55,7 +55,7 @@ func main() {
   // Setup the server.
   server := &http.Server{
     Handler: router,
-    Addr:    ":" + PORT,
+    Addr: ":" + PORT,
   }
 
   log.Printf("Server starting on port %v.", PORT)
