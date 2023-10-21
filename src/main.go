@@ -40,7 +40,7 @@ func main() {
 	log.Printf("Server starting on port %v.", PORT)
 
 	// Listen to the server.
-	err = server.ListenAndServe()
+	err = server.ListenAndServe();
 
 	if err != nil {
 		log.Fatal(err)
