@@ -13,7 +13,7 @@ import (
 func main() {
 	// Load the env file.
 	// No longer needs to use the "export PORT=value".
-	err := godotenv.Load(".env")
+	err := godotenv.Load()
 
 	// Check if their is an error.
 	if err != nil {
