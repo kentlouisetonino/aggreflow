@@ -31,15 +31,20 @@ func main() {
 
 	// Initialize the router.
 	router := chi.NewRouter()
-  
-  router.Use(cors.Handler(cors.Options{
-    AllowedOrigins:   []string{"https://*", "http://*"},
-    AllowedMethods:   []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
-    AllowedHeaders:   []string{"*"},
-    ExposedHeaders:   []string{"Link"},
-    AllowCredentials: false,
-    MaxAge:           300,
-  }))
+
+	// Setup the cors to allow any request from the browser.
+	router.Use(cors.Handler(cors.Options{
+		AllowedOrigins:   []string{"https://*", "http://*"},
+		AllowedMethods:   []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
+		AllowedHeaders:   []string{"*"},
+		ExposedHeaders:   []string{"Link"},
+		AllowCredentials: false,
+		MaxAge:           300,
+	}))
+
+	routerV2 := chi.NewRouter()
+
+	routerV2.HandleFunc("/ready", handler)
 
 	// Setup the server.
 	server := &http.Server{
@@ -50,7 +55,7 @@ func main() {
 	log.Printf("Server starting on port %v.", PORT)
 
 	// Listen to the server.
-	err = server.ListenAndServe();
+	err = server.ListenAndServe()
 
 	if err != nil {
 		log.Fatal(err)
