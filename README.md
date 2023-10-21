@@ -1,5 +1,5 @@
 ### Description
-> - An RSS aggregator application.
+> - A simple RSS aggregator application.
 
 <br />
 <br />
