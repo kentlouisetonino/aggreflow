@@ -49,7 +49,7 @@ func main() {
   routerV1.Get("/error", helper.HandleError)
 
   // Nest the routerV2.
-  // The full path for this is /api/health
+  // The full path for this is /v1/health
   router.Mount("/v1", routerV1)
 
   // Setup the server.
