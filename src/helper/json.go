@@ -25,3 +25,17 @@ func respondWithJSON(w http.ResponseWriter, code int, payload interface{}) {
   w.Write(data)
 }
 
+func responWithError(w http.ResponseWriter, code int, message string) {
+  // Error handling if code is 500 or more.
+  if code > 499 {
+    log.Println("Responding with 5XX Error: ", message)
+  }
+   
+  type errorResponse struct {
+    Error string `json: "error"`
+  }
+
+  respondWithJSON(w, code, errorResponse{
+    Error: message,
+  })
+}
