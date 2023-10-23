@@ -30,7 +30,7 @@ go mod vendor
 go mod tidy
 ```
 
-> - Help docker commands.
+> - Helpful docker commands.
 ```bash
 # Pull the postgres image.
 # "up": Used to start/create containers as defined in the compose file.
