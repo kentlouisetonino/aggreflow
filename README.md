@@ -1,5 +1,6 @@
 ### Description
-> - A simple RSS aggregator application.
+> - A simple RSS aggregator backend application. The technologies are:
+    REST APIs, Go-Chi, Go, PostgreSQL, and Docker. Currently in progress,
 
 <br />
 <br />
