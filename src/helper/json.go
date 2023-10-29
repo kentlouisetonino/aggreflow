@@ -13,7 +13,7 @@ func respondWithJSON(w http.ResponseWriter, code int, payload interface{}) {
   // Error handling.
   if error != nil {
     // Log the failed marshal payload.
-    log.Printf("Failed to marshal JSON response: %v.", payload)
+    log.Printf("F\033[31m[ERROR]\033[0m Failed to marshal JSON response: %v.", payload)
     // Write the status code in the header.
     w.WriteHeader(500);
     return;
