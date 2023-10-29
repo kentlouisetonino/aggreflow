@@ -31,7 +31,7 @@ go mod vendor
 go mod tidy
 ```
 
-> - Helpful ![docker information](https://github.com/kentlouisetonino/aggreflow/blob/develop/docs/docker.md).
+> - Helpful [docker information](https://github.com/kentlouisetonino/aggreflow/blob/develop/docs/docker.md).
 
-> - Helpful ![postgres information](https://github.com/kentlouisetonino/aggreflow/blob/develop/docs/postgres.md).
+> - Helpful [postgres information](https://github.com/kentlouisetonino/aggreflow/blob/develop/docs/postgres.md).
 
