@@ -50,7 +50,7 @@ func main() {
 
   // Nest the routerV2.
   // The full path for this is /v1t /health
-  router.Mount("/v1", routerV1)
+  router.Mount("/api", routerV1)
 
   // Setup the server.
   server := &http.Server{
