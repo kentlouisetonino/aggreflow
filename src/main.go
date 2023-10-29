@@ -27,7 +27,7 @@ func main() {
 
   // Check again to make sure if it exist or not.
   if PORT == "" {
-    log.Fatal("PORT is not found in environment.")
+    log.Fatal("\033[31m[ERROR]\033[0m PORT is not found in environment.")
   }
 
   // Initialize the router.
@@ -57,8 +57,10 @@ func main() {
     Handler: router,
     Addr: ":" + PORT,
   }
-
-  log.Printf("Server starting on port %v.", PORT)
+  
+  // Color Reset: \033[0m
+  // Color Blue: \033[34m
+  log.Printf("\033[34m[INFO]\033[0m Server starting on port %v", PORT)
 
   // Listen to the server.
   err = server.ListenAndServe()
