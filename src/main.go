@@ -13,60 +13,59 @@ import (
 )
 
 func main() {
-  // Load the env file.
-  // No longer needs to use the "export PORT=value".
-  err := godotenv.Load()
+	// Load the env file.
+	// No longer needs to use the "export PORT=value".
+	err := godotenv.Load()
 
-  // Check if their is an error.
-  if err != nil {
-    fmt.Println(err)
-  }
+	// Check if their is an error.
+	if err != nil {
+		fmt.Println(err)
+	}
 
-  // Get the port environment variable.
-  PORT := os.Getenv("PORT")
+	// Get the port environment variable.
+	PORT := os.Getenv("PORT")
 
-  // Check again to make sure if it exist or not.
-  if PORT == "" {
-    log.Fatal("\033[31m[ERROR]\033[0m PORT is not found in environment.")
-  }
+	// Check again to make sure if it exist or not.
+	if PORT == "" {
+		log.Fatal("\033[31m[ERROR]\033[0m PORT is not found in environment.")
+	}
 
-  // Initialize the router.
-  router := chi.NewRouter()
+	// Initialize the router.
+	router := chi.NewRouter()
 
-  // Setup the cors to allow any request from the browser.
-  router.Use(cors.Handler(cors.Options{
-    AllowedOrigins: []string{"https://*", "http://*"},
-    AllowedMethods: []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
-    AllowedHeaders: []string{"*"},
-    ExposedHeaders: []string{"Link"},
-    AllowCredentials: false,
-    MaxAge: 300,
-  }))
+	// Setup the cors to allow any request from the browser.
+	router.Use(cors.Handler(cors.Options{
+		AllowedOrigins:   []string{"https://*", "http://*"},
+		AllowedMethods:   []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
+		AllowedHeaders:   []string{"*"},
+		ExposedHeaders:   []string{"Link"},
+		AllowCredentials: false,
+		MaxAge:           300,
+	}))
 
-  // For handling the passed json value.
-  routerV1 := chi.NewRouter()
-  routerV1.HandleFunc("/health", helper.HandleHealth)
-  routerV1.Get("/error", helper.HandleError)
+	// For handling the passed json value.
+	routerV1 := chi.NewRouter()
+	routerV1.HandleFunc("/health", helper.HandleHealth)
+	routerV1.Get("/error", helper.HandleError)
 
-  // Nest the routerV2.
-  // The full path for this is /v1t /health
-  router.Mount("/api", routerV1)
+	// Nest the routerV2.
+	// The full path for this is /v1t /health
+	router.Mount("/api", routerV1)
 
-  // Setup the server.
-  server := &http.Server{
-    Handler: router,
-    Addr: ":" + PORT,
-  }
-  
-  // Color Reset: \033[0m
-  // Color Blue: \033[34m
-  log.Printf("\033[34m[INFO]\033[0m Server starting on port %v", PORT)
+	// Setup the server.
+	server := &http.Server{
+		Handler: router,
+		Addr:    ":" + PORT,
+	}
 
-  // Listen to the server.
-  err = server.ListenAndServe()
+	// Color Reset: \033[0m
+	// Color Blue: \033[34m
+	log.Printf("\033[34m[INFO]\033[0m Server starting on port %v", PORT)
 
-  if err != nil {
-    log.Fatal(err)
-  }
+	// Listen to the server.
+	err = server.ListenAndServe()
+
+	if err != nil {
+		log.Fatal(err)
+	}
 }
-
