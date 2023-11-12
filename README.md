@@ -31,7 +31,7 @@ go mod vendor
 go mod tidy
 ```
 
-> - Helpful [docker information](https://github.com/kentlouisetonino/aggreflow/blob/develop/docs/docker.md).
+> - Helpful [docker documentation](https://github.com/kentlouisetonino/aggreflow/blob/develop/docs/docker.md).
 
 ```bash
 # Connect to aggreflowdb using any database client.
