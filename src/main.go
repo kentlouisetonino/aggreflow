@@ -9,7 +9,7 @@ import (
 	"github.com/go-chi/chi"
 	"github.com/go-chi/cors"
 	"github.com/joho/godotenv"
-	"github.com/kentlouisetonino/aggreflow/src/helper"
+	"github.com/kentlouisetonino/aggreflow/src/router/root"
 )
 
 func main() {
@@ -43,14 +43,9 @@ func main() {
 		MaxAge:           300,
 	}))
 
-	// For handling the passed json value.
-	routerV1 := chi.NewRouter()
-	routerV1.HandleFunc("/health", helper.HandleHealth)
-	routerV1.Get("/error", helper.HandleError)
-
 	// Nest the routerV2.
 	// The full path for this is /v1t /health
-	router.Mount("/api", routerV1)
+	router.Mount("/api", root.Router())
 
 	// Setup the server.
 	server := &http.Server{
