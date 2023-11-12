@@ -31,7 +31,7 @@ go mod vendor
 go mod tidy
 ```
 
-> - Helpful [docker documentation](https://github.com/kentlouisetonino/aggreflow/blob/develop/docs/docker.md).
+> - Docker [documentation](https://github.com/kentlouisetonino/aggreflow/blob/develop/docs/docker.md).
 
 ```bash
 # Connect to aggreflowdb using any database client.
@@ -41,4 +41,6 @@ Database: aggreflowdb
 Username: postgres
 Password: postgres
 ```
+
+> - Modules [documentation](https://github.com/kentlouisetonino/aggreflow/blob/develop/docs/modules.md).
 
