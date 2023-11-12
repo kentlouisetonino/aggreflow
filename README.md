@@ -35,7 +35,8 @@ go mod tidy
 
 ```bash
 # Connect to aggreflowdb using any database client.
-HOST: 5432
+Host: localhost
+Port: 5432 
 Database: aggreflowdb
 Username: postgres
 Password: postgres
