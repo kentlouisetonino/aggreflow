@@ -33,5 +33,11 @@ go mod tidy
 
 > - Helpful [docker information](https://github.com/kentlouisetonino/aggreflow/blob/develop/docs/docker.md).
 
-> - Helpful [postgres information](https://github.com/kentlouisetonino/aggreflow/blob/develop/docs/postgres.md).
+```bash
+# Connect to aggreflowdb using any database client.
+HOST: 5432
+Database: aggreflowdb
+Username: postgres
+Password: postgres
+```
 

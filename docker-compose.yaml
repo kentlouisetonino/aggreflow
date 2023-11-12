@@ -1,13 +1,15 @@
-version: '3.8'
+version: "3.1"
+
 services:
   aggreflowdb:
-    image: postgres:latest
+    image: postgres
+    container_name: aggreflowdb_container
     restart: always
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres123
+      POSTGRES_PASSWORD: postgres
     ports:
-      - '8080:8080'
+      - "5432:5432"
     volumes:
       - ./docker/docker_postgres_init.sql:/docker-entrypoint-initdb.d/docker_postgres_init.sql
 

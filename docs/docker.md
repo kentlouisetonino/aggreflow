@@ -12,5 +12,5 @@ docker-compose up --build -d
 # "-t": Allocates a pseudo-TTY, for running interactive commands like a PostgreSQL REPL.
 # "psql": PostgreSQL command-line utility to interact with PostgreSQL database.
 # "-U": Specifies the username to use when connecting to the databse, which is postgres.
-docker exec -it <container-name> psql -U postgres
+docker exec -it aggreflowdb_container psql -U postgres
 ```
