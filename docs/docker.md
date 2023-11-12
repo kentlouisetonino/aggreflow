@@ -14,4 +14,3 @@ docker-compose up --build -d
 # "-U": Specifies the username to use when connecting to the databse, which is postgres.
 docker exec -it <container-name> psql -U postgres
 ```
-
