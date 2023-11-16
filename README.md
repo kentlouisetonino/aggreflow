@@ -33,6 +33,15 @@
 
 
 ### Development Guides
+> - Create a `.env` file with the following values below.
+```bash
+# For server connection.
+PORT=13000
+
+# For database connection.
+DB_URL=postgresql://username:password@localhost:database_port/database_name?sslmode=disable
+```
+
 > - Bash scripts.
 ```bash
 # Build the app.
@@ -91,7 +100,7 @@ docker exec -it aggreflowdb_container psql -U postgres
 ```bash
 # Connect to aggreflowdb using any database client.
 Host: localhost
-Port: 5432 
+Port: 5432
 Database: aggreflowdb
 Username: postgres
 Password: postgres
