@@ -14,6 +14,7 @@ import (
 	"github.com/kentlouisetonino/aggreflow/src/helper"
 	font "github.com/kentlouisetonino/aggreflow/src/helper"
 	"github.com/kentlouisetonino/aggreflow/src/libs"
+	_ "github.com/lib/pq"
 )
 
 func main() {
@@ -39,6 +40,7 @@ func main() {
 	// Connect to the database.
 	postgresConnection, postgresConnectionError := sql.Open("postgres", DB_URL)
 	if postgresConnectionError != nil {
+		fmt.Println(postgresConnectionError)
 		log.Fatal(font.Red + "[ERROR]" + font.Reset + " Cannot connect to the database.")
 	}
 
