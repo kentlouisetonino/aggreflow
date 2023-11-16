@@ -31,8 +31,13 @@ go mod vendor
 go mod tidy
 ```
 
-> - Docker [documentation](https://github.com/kentlouisetonino/aggreflow/blob/develop/docs/docker.md).
+> - Pulling the postgres from docker.
 
+```bash
+docker-compose up --build -d
+```
+
+> - Connecting to the database.
 ```bash
 # Connect to aggreflowdb using any database client.
 Host: localhost
@@ -41,6 +46,4 @@ Database: aggreflowdb
 Username: postgres
 Password: postgres
 ```
-
-> - Modules [documentation](https://github.com/kentlouisetonino/aggreflow/blob/develop/docs/modules.md).
 
