@@ -15,7 +15,7 @@ func Router(apiConfig *helper.DatabaseConfig) *chi.Mux {
 	routerInstance.Get("/error", handleError)
 
 	// For users endpoint.
-	routerInstance.Post("/users", func(writer http.ResponseWriter, request *http.Request) {
+	routerInstance.Post("/users/create", func(writer http.ResponseWriter, request *http.Request) {
 		handleUserCreate(writer, request, apiConfig)
 	})
 
