@@ -1,6 +1,7 @@
 package main
 
 import (
+	"database/sql"
 	"fmt"
 	"log"
 	"net/http"
@@ -9,25 +10,41 @@ import (
 	"github.com/go-chi/chi"
 	"github.com/go-chi/cors"
 	"github.com/joho/godotenv"
-	"github.com/kentlouisetonino/aggreflow/src/router/root"
+	"github.com/kentlouisetonino/aggreflow/database/sqlc"
+	"github.com/kentlouisetonino/aggreflow/src/helper"
+	font "github.com/kentlouisetonino/aggreflow/src/helper"
+	"github.com/kentlouisetonino/aggreflow/src/libs"
 )
 
 func main() {
 	// Load the env file.
 	// No longer needs to use the "export PORT=value".
-	err := godotenv.Load()
-
-	// Check if their is an error.
-	if err != nil {
-		fmt.Println(err)
+	errorGoDotenv := godotenv.Load()
+	if errorGoDotenv != nil {
+		fmt.Println(errorGoDotenv)
 	}
 
 	// Get the port environment variable.
 	PORT := os.Getenv("PORT")
-
-	// Check again to make sure if it exist or not.
 	if PORT == "" {
-		log.Fatal("\033[31m[ERROR]\033[0m PORT is not found in environment.")
+		log.Fatal(font.Red + "[ERROR]" + font.Reset + " PORT is not found in environment.")
+	}
+
+	// Get the DB__UR; environment variable.
+	DB_URL := os.Getenv("DB_URL")
+	if DB_URL == "" {
+		log.Fatal(font.Red + "[ERROR]" + font.Reset + " DB_URL is not found in environment.")
+	}
+
+	// Connect to the database.
+	postgresConnection, postgresConnectionError := sql.Open("postgres", DB_URL)
+	if postgresConnectionError != nil {
+		log.Fatal(font.Red + "[ERROR]" + font.Reset + " Cannot connect to the database.")
+	}
+
+	// API configuration
+	apiConfig := helper.DatabaseConfig{
+		DB: sqlc.New(postgresConnection),
 	}
 
 	// Initialize the router.
@@ -45,7 +62,7 @@ func main() {
 
 	// Nest the routerV2.
 	// The full path for this is /v1t /health
-	router.Mount("/api", root.Router())
+	router.Mount("/api", libs.Router(&apiConfig))
 
 	// Setup the server.
 	server := &http.Server{
@@ -58,9 +75,8 @@ func main() {
 	log.Printf("\033[34m[INFO]\033[0m Server starting on port %v", PORT)
 
 	// Listen to the server.
-	err = server.ListenAndServe()
-
-	if err != nil {
-		log.Fatal(err)
+	serverError := server.ListenAndServe()
+	if serverError != nil {
+		log.Fatal(serverError)
 	}
 }
