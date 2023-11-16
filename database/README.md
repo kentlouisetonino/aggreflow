@@ -39,7 +39,11 @@ goose postgres postgresql://postgres:postgres@localhost:5432/aggreflowdb down
 ### SQLC Guides
 ```bash
 # Generating sqlc files.
+# Either below.
 cd <root-project>
 sqlc generate -f "./database/sqlc.yaml"
+
+cd database
+sqlc generate
 ```
 
