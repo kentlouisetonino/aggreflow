@@ -105,7 +105,7 @@ Password: postgres
 ### Goose Guides
 > - Managing migrations.
 
-```plaintext
+```bash
 # Go the schema.
 cd database/schema
 
