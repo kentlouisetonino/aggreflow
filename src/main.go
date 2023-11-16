@@ -12,7 +12,6 @@ import (
 	"github.com/joho/godotenv"
 	"github.com/kentlouisetonino/aggreflow/database/sqlc"
 	"github.com/kentlouisetonino/aggreflow/src/helper"
-	font "github.com/kentlouisetonino/aggreflow/src/helper"
 	"github.com/kentlouisetonino/aggreflow/src/libs"
 	_ "github.com/lib/pq"
 )
@@ -28,20 +27,20 @@ func main() {
 	// Get the port environment variable.
 	PORT := os.Getenv("PORT")
 	if PORT == "" {
-		log.Fatal(font.Red + "[ERROR]" + font.Reset + " PORT is not found in environment.")
+		log.Fatal(helper.Red + "[ERROR]" + helper.Reset + " PORT is not found in environment.")
 	}
 
 	// Get the DB__UR; environment variable.
 	DB_URL := os.Getenv("DB_URL")
 	if DB_URL == "" {
-		log.Fatal(font.Red + "[ERROR]" + font.Reset + " DB_URL is not found in environment.")
+		log.Fatal(helper.Red + "[ERROR]" + helper.Reset + " DB_URL is not found in environment.")
 	}
 
 	// Connect to the database.
 	postgresConnection, postgresConnectionError := sql.Open("postgres", DB_URL)
 	if postgresConnectionError != nil {
 		fmt.Println(postgresConnectionError)
-		log.Fatal(font.Red + "[ERROR]" + font.Reset + " Cannot connect to the database.")
+		log.Fatal(helper.Red + "[ERROR]" + helper.Reset + " Cannot connect to the database.")
 	}
 
 	// API configuration
