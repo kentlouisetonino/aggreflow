@@ -10,7 +10,7 @@ import (
 func Router(apiConfig *helper.DatabaseConfig) *chi.Mux {
 	routerInstance := chi.NewRouter()
 
-	// For endpoint health and error checker.
+	// For root endpoint health and error checker.
 	routerInstance.HandleFunc("/health", handleHealth)
 	routerInstance.Get("/error", handleError)
 
