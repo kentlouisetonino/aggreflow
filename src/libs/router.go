@@ -8,16 +8,16 @@ import (
 )
 
 func Router(apiConfig *helper.DatabaseConfig) *chi.Mux {
-	routerInstance := chi.NewRouter()
+  routerInstance := chi.NewRouter()
 
-	// For root endpoint health and error checker.
-	routerInstance.HandleFunc("/health", handleHealth)
-	routerInstance.Get("/error", handleError)
+  // For root endpoint health and error checker.
+  routerInstance.HandleFunc("/health", handleHealth)
+  routerInstance.Get("/error", handleError)
 
-	// For users endpoint.
-	routerInstance.Post("/users/create", func(writer http.ResponseWriter, request *http.Request) {
-		handleUserCreate(writer, request, apiConfig)
-	})
+  // For users endpoint.
+  routerInstance.Post("/users/create", func(writer http.ResponseWriter, request *http.Request) {
+    handleUserCreate(writer, request, apiConfig)
+  })
 
-	return routerInstance
+  return routerInstance
 }
