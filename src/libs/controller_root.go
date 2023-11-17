@@ -11,4 +11,3 @@ func handleError(writer http.ResponseWriter, request *http.Request) {
 func handleHealth(writer http.ResponseWriter, request *http.Request) {
   responseWithJSON(writer, 200, struct{}{})
 }
-
