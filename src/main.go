@@ -12,7 +12,7 @@ import (
 	"github.com/joho/godotenv"
 	"github.com/kentlouisetonino/aggreflow/database/sqlc"
 	"github.com/kentlouisetonino/aggreflow/src/helper"
-	"github.com/kentlouisetonino/aggreflow/src/libs"
+	"github.com/kentlouisetonino/aggreflow/src/router"
 	_ "github.com/lib/pq"
 )
 
@@ -28,12 +28,16 @@ func main() {
   PORT := os.Getenv("PORT")
   if PORT == "" {
     log.Fatal(helper.Red + "[ERROR]" + helper.Reset + " PORT is not found in environment.")
+  } else {
+    log.Printf(helper.Green + "[INFO]" + helper.Reset + " Detected port %v.", PORT)
   }
 
   // Get the DB__UR; environment variable.
   DB_URL := os.Getenv("DB_URL")
   if DB_URL == "" {
     log.Fatal(helper.Red + "[ERROR]" + helper.Reset + " DB_URL is not found in environment.")
+  } else {
+    log.Printf(helper.Green + "[INFO]" + helper.Reset + " Detected postgres database URL.")
   }
 
   // Connect to the database.
@@ -41,6 +45,8 @@ func main() {
   if postgresConnectionError != nil {
     fmt.Println(postgresConnectionError)
     log.Fatal(helper.Red + "[ERROR]" + helper.Reset + " Cannot connect to the database.")
+  } else {
+    log.Printf(helper.Green + "[INFO]" + helper.Reset + " Connected postgres database successfully.")
   }
 
   // API configuration
@@ -49,10 +55,10 @@ func main() {
   }
 
   // Initialize the router.
-  router := chi.NewRouter()
+  routerInstance := chi.NewRouter()
 
   // Setup the cors to allow any request from the browser.
-  router.Use(cors.Handler(cors.Options{
+  routerInstance.Use(cors.Handler(cors.Options{
     AllowedOrigins:   []string{"https://*", "http://*"},
     AllowedMethods:   []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
     AllowedHeaders:   []string{"*"},
@@ -63,17 +69,17 @@ func main() {
 
   // Nest the routerV2.
   // The full path for this is /v1t /health
-  router.Mount("/api", libs.Router(&apiConfig))
+  routerInstance.Mount("/api/default", router.RouterDefault(&apiConfig))
+  routerInstance.Mount("/api/users", router.RouterUsers(&apiConfig))
 
   // Setup the server.
   server := &http.Server{
-    Handler: router,
+    Handler: routerInstance,
     Addr:    ":" + PORT,
   }
 
-  // Color Reset: \033[0m
-  // Color Blue: \033[34m
-  log.Printf("\033[34m[INFO]\033[0m Server starting on port %v", PORT)
+  // Server health logger.
+  log.Printf(helper.Green + "[INFO]" + helper.Reset + " Server started successfully.")
 
   // Listen to the server.
   serverError := server.ListenAndServe()
