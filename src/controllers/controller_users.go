@@ -10,6 +10,7 @@ import (
 	"github.com/kentlouisetonino/aggreflow/database/sqlc"
 	"github.com/kentlouisetonino/aggreflow/src/helpers"
 	"github.com/kentlouisetonino/aggreflow/src/middlewares"
+	"github.com/kentlouisetonino/aggreflow/src/models"
 )
 
 func HandleUserCreate(writer http.ResponseWriter, request *http.Request, apiConfig *helpers.DatabaseConfig) {
@@ -45,6 +46,6 @@ func HandleUserCreate(writer http.ResponseWriter, request *http.Request, apiConf
 	}
 
 	// Return the successful response.
-	middlewares.ResponseWithJSON(writer, 200, newUser)
+	middlewares.ResponseWithJSON(writer, 200, models.DatabaseUserToUser(newUser))
 	log.Printf(helpers.Blue + "[api/users/create]" + helpers.Reset + " Successfully created the user.")
 }
