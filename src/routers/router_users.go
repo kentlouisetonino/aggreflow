@@ -9,12 +9,13 @@ import (
 )
 
 func RouterUsers(apiConfig *helpers.DatabaseConfig) *chi.Mux {
-	routerInstance := chi.NewRouter()
+  routerInstance := chi.NewRouter()
 
-	// For users endpoint.
-	routerInstance.Post("/create", func(writer http.ResponseWriter, request *http.Request) {
-		controllers.HandleUserCreate(writer, request, apiConfig)
-	})
+  // For users endpoint.
+  routerInstance.Post("/create", func(writer http.ResponseWriter, request *http.Request) {
+    controllers.HandleUserCreate(writer, request, apiConfig)
+  })
 
-	return routerInstance
+  return routerInstance
 }
+
