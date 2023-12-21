@@ -14,39 +14,38 @@ import (
 )
 
 func HandleUserCreate(writer http.ResponseWriter, request *http.Request, apiConfig *helpers.DatabaseConfig) {
-  type parameters struct {
-    Name string
-  }
+	type parameters struct {
+		Name string
+	}
 
-  // Create a decoder instance.
-  decoder := json.NewDecoder(request.Body)
-  params := parameters{}
-  
-  // Decode the parameters.
-  decoderError := decoder.Decode(&params)
-  if decoderError != nil {
-    middlewares.ResponseWithError(writer, 400, "Error parsing JSON.")
-    log.Fatal(helpers.Red + "[api/users/create]" + helpers.Reset + " Error decoding the parameters.")
-    return
-  }
+	// Create a decoder instance.
+	decoder := json.NewDecoder(request.Body)
+	params := parameters{}
 
-  // Create a user.
-  newUser, newUserError := apiConfig.DB.CreateUser(request.Context(), sqlc.CreateUserParams{
-    ID:        uuid.New(),
-    Name:      params.Name,
-    CreatedAt: time.Now().UTC(),
-    UpdatedAt: time.Now().UTC(),
-  })
+	// Decode the parameters.
+	decoderError := decoder.Decode(&params)
+	if decoderError != nil {
+		middlewares.ResponseWithError(writer, 400, "Error parsing JSON.")
+		log.Fatal(helpers.Red + "[api/users/create]" + helpers.Reset + " Error decoding the parameters.")
+		return
+	}
 
-  // Return an error message.
-  if newUserError != nil {
-    middlewares.ResponseWithError(writer, 400, "Could not create user.")
-    log.Fatal(helpers.Red + "[api/users/create]" + helpers.Reset + " Error creating the user.")
-    return
-  }
+	// Create a user.
+	newUser, newUserError := apiConfig.DB.CreateUser(request.Context(), sqlc.CreateUserParams{
+		ID:        uuid.New(),
+		Name:      params.Name,
+		CreatedAt: time.Now().UTC(),
+		UpdatedAt: time.Now().UTC(),
+	})
 
-  // Return the successful response.
-  middlewares.ResponseWithJSON(writer, 200, models.DatabaseUserToUser(newUser))
-  log.Printf(helpers.Blue + "[api/users/create]" + helpers.Reset + " Successfully created the user.")
+	// Return an error message.
+	if newUserError != nil {
+		middlewares.ResponseWithError(writer, 400, "Could not create user.")
+		log.Fatal(helpers.Red + "[api/users/create]" + helpers.Reset + " Error creating the user.")
+		return
+	}
+
+	// Return the successful response.
+	middlewares.ResponseWithJSON(writer, 200, models.DatabaseUserToUser(newUser))
+	log.Printf(helpers.Blue + "[api/users/create]" + helpers.Reset + " Successfully created the user.")
 }
-
