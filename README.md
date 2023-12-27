@@ -1,6 +1,9 @@
 ### Description
-> - A RSS aggregator backend application. The technologies are
-    REST APIs, Go-Chi, Go, PostgreSQL, and Docker. Currently in progress,
+> - A RSS aggregator backend application.
+
+> - The technologies are REST APIs, Go-Chi, Go, PostgreSQL, and Docker.
+
+> - Current `in progress`.
 
 <br />
 <br />
@@ -33,7 +36,18 @@
 
 
 ### Development Guides
+> - Pushing changes to all remote repository.
+
+```bash
+# Change mode the permission and make it executable.
+chmod +x git-push-all
+
+# Push all changes to remote repositories.
+./git-push-all
+```
+
 > - Create a `.env` file with the following values below.
+
 ```bash
 # For server connection.
 PORT=13000
@@ -43,6 +57,7 @@ DB_URL=postgresql://username:password@localhost:database_port/database_name?sslm
 ```
 
 > - Bash scripts.
+
 ```bash
 # Build the app.
 chmod +x build
@@ -59,6 +74,7 @@ chmod +x app
 
 
 ### Module Management Guides
+
 ```bash
 # Installing package.
 go get <github/*>
@@ -76,6 +92,7 @@ go mod tidy
 
 
 ### Docker Guides
+
 ```bash
 # Pull the postgres image.
 # "up": Used to start/create containers as defined in the compose file.
@@ -97,6 +114,7 @@ docker exec -it aggreflowdb_container psql -U postgres
 
 
 ### Database Guides
+
 ```bash
 # Connect to aggreflowdb using any database client.
 Host: localhost
@@ -131,6 +149,7 @@ goose postgres postgresql://postgres:postgres@localhost:5432/aggreflowdb down
 
 
 ### SQLC Guides
+
 ```bash
 # Generating sqlc files.
 # Either below.
