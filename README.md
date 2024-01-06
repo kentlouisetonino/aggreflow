@@ -1,4 +1,4 @@
-### Description
+## Description
 > - A backend RSS aggregator application.
 
 > - The tools and technologies include REST APIs, Bash, Go, Go-Chi, Go-Goose, Go-SQLC,
@@ -8,7 +8,8 @@
 <br />
 
 
-### Folder Structuring Guides
+
+## Folder Structuring Guides
 ```bash
 # Directories for CRUD specific queries.
 ./database/queries/*
@@ -34,7 +35,7 @@
 
 
 
-### Development Guides
+## Local Development
 > - Pushing changes to all remote repository.
 
 ```bash
@@ -72,7 +73,7 @@ chmod +x app
 
 
 
-### Module Management Guides
+## Module Management
 
 ```bash
 # Installing package.
@@ -90,7 +91,7 @@ go mod tidy
 
 
 
-### Docker Guides
+## Docker Management
 
 ```bash
 # Pull the postgres image.
@@ -112,7 +113,7 @@ docker exec -it aggreflowdb_container psql -U postgres
 
 
 
-### Database Guides
+## Database Management
 
 ```bash
 # Connect to aggreflowdb using any database client.
@@ -128,7 +129,7 @@ Password: postgres
 
 
 
-### Goose Guides
+## Goose Management
 > - Managing migrations.
 
 ```bash
@@ -147,7 +148,7 @@ goose postgres postgresql://postgres:postgres@localhost:5432/aggreflowdb down
 
 
 
-### SQLC Guides
+## SQLC Management
 
 ```bash
 # Generating sqlc files.
